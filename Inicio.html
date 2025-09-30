@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maniaterránia - Hummus, Falafel y Shawarma</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-egg-fried me-2"></i>Maniaterránia</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menú</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inicia Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Carrito</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel -->
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="Imagenes/Hummusjpg.jpg" class="d-block w-100" alt="Hummus">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Hummus Auténtico</h3>
+                    <p>Preparado con garbanzos, tahini y especias seleccionadas</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Imagenes/Falafel1.jpg" class="d-block w-100" alt="Falafel">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Falafel Crujiente</h3>
+                    <p>Croquetas de garbanzos y especias, fritas al momento</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Imagenes/Shawarma1.webp" class="d-block w-100" alt="Shawarma">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Shawarma Tradicional</h3>
+                    <p>Carne marinada y asada lentamente, servida en pan pita</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- Main Content with Grid System -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Left Sidebar - col-2 -->
+            <div class="col-md-2 d-none d-md-block">
+                <!-- Espacio vacío según solicitud -->
+            </div>
+            <!-- Right Sidebar - col-2 -->
+            <div class="col-md-2 d-none d-md-block">
+                <!-- Espacio vacío según solicitud -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>Maniaterránia</h5>
+                    <p class="small">Auténtica comida mediterránea: hummus, falafel y shawarma.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contacto</h5>
+                    <p class="small mb-1"><i class="bi bi-telephone me-2"></i>+569 6173 9921</p>
+                    <p class="small mb-1"><i class="bi bi-envelope me-2"></i>info@mediterraneo.com</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Únete</h5>
+                    <p class="small">Suscríbete para recibir nuestras promociones y novedades.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Tu email">
+                        <button class="btn btn-primary" type="button">Suscribir</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-3" style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center small">
+                <p>&copy; 2025 Maniaterránia. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
