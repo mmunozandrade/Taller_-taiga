@@ -36,36 +36,19 @@
         </div>
     </nav>
     <div class="container">
-        <div class="card flow-card bg-white">
-            <h2 class="card-title text-center text-success mb-4">Consulta de Pedido</h2>
-            
-            <p class="small text-muted text-center">Etapa Inicial: Consultar Pedido</p>
-
-            <form action="/ver-estado-pedido" method="GET" class="mb-5 border p-3 rounded bg-light">
-                <h5 class="text-center mb-3">Ver estado del pedido</h5>
+        <div class="container mt-4">
+        <div class="card shadow">
+            <div class="card-body">
+                <h3 class="text-center mb-4">Consulta de Pedido</h3>
                 
                 <div class="mb-3">
-                    <label for="idPedido" class="form-label small">Ingrese el ID del Pedido</label>
-                    <input type="text" class="form-control" id="idPedido" placeholder="Ej: P0012345" required>
+                    <label class="form-label">ID del Pedido</label>
+                    <input type="text" class="form-control" placeholder="Ingresa tu ID de pedido">
                 </div>
                 
-                <button type="submit" class="btn btn-primary w-100">Ver</button>
-            </form>
-            
-            <h5 class="mt-4 mb-3 text-primary">Simulación</h5>
-            
-            <div class="card bg-info-subtle border-info mb-3">
-                <div class="card-body p-3">
-                    <h6 class="card-title text-info">Esc 1: Pedido en camino</h6>
-                    <p class="mb-0 small fw-bold">El pedido está actualmente en reparto. Se espera que llegue hoy.</p>
-                </div>
-            </div>
-
-            <div class="card bg-success-subtle border-success">
-                <div class="card-body p-3">
-                    <h6 class="card-title text-success">Esc 2: Entregado</h6>
-                    <p class="mb-0 small fw-bold">El pedido ha sido entregado exitosamente. ¡Gracias por tu compra!</p>
-                </div>
+                <button class="btn btn-primary w-100">
+                    Ver Estado del Pedido
+                </button>
             </div>
         </div>
     </div>

@@ -8,54 +8,44 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="bg-light">
-
-<div class="container">
-    <div class="mx-auto payment-container"> 
-        
-        <h2 class="mb-4 text-center">Datos de pago</h2>
-        
-        <form id="formularioPago">
-            
-            <div class="mb-3">
-                <label for="numeroTarjeta" class="form-label">Nº de la tarjeta</label>
-                <input type="text" 
-                    class="form-control" 
-                    id="numeroTarjeta" 
-                       placeholder="**** **** **** ****" 
-                    maxlength="19" 
-                    required>
-            </div>
-
-            <div class="row mb-4">
-                
-                <div class="col-6">
-                    <label for="expiracion" class="form-label">fecha de expiración</label>
+    <div class="container">
+        <div class="mx-auto payment-container"> 
+            <h2 class="mb-4 text-center">Datos de pago</h2>
+            <form id="formularioPago">
+                <div class="mb-3">
+                    <label for="numeroTarjeta" class="form-label">Nº de la tarjeta</label>
                     <input type="text" 
                         class="form-control" 
-                        id="expiracion" 
-                        placeholder="MM/AA" 
-                        maxlength="5" 
+                        id="numeroTarjeta" 
+                        placeholder="**** **** **** ****" 
+                        maxlength="19" 
                         required>
                 </div>
-                
-                <div class="col-6">
-                    <label for="ccv" class="form-label">CCV</label>
-                    <input type="password" 
-                        class="form-control" 
-                        id="ccv" 
-                        placeholder="***" 
-                        maxlength="4" 
-                        required>
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <label for="expiracion" class="form-label">fecha de expiración</label>
+                        <input type="text" 
+                            class="form-control" 
+                            id="expiracion" 
+                            placeholder="MM/AA" 
+                            maxlength="5" 
+                            required>
+                    </div>
+                    <div class="col-6">
+                        <label for="ccv" class="form-label">CCV</label>
+                        <input type="password" 
+                            class="form-control" 
+                            id="ccv" 
+                            placeholder="***" 
+                            maxlength="4" 
+                            required>
+                    </div>
                 </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-lg w-100">
-                Pagar
-            </button>
-            
-        </form>
-        
+                <button type="submit" class="btn btn-primary btn-lg w-100">
+                    Pagar
+                </button>
+            </form>
+        </div>
     </div>
-</div>
-    </body>
+</body>
 </html>

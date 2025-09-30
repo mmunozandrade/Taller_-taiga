@@ -9,38 +9,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="bg-light">
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow">
-                    <div class="card-body p-4">
-                        <h2 class="text-center mb-4">Escenarios de Seguridad</h2>
-                        
-                        <!-- Escenario 1 -->
-                        <div class="card mb-4">
-                            <div class="card-header bg-primary text-white">
-                                <h5 class="mb-0">Escenario 1: Datos cifrados</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="mb-2"><strong>Dado que</strong> un cliente se registra</p>
-                                <p class="mb-2"><strong>Cuando</strong> guardo sus datos</p>
-                                <p class="mb-0"><strong>Entonces</strong> se almacenan encriptados</p>
-                            </div>
-                        </div>
-
-                        <!-- Escenario 2 -->
-                        <div class="card">
-                            <div class="card-header bg-success text-white">
-                                <h5 class="mb-0">Escenario 2: Acceso a datos</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="mb-2"><strong>Dado que</strong> intento ver datos en BD</p>
-                                <p class="mb-2"><strong>Cuando</strong> no tengo permisos</p>
-                                <p class="mb-0"><strong>Entonces</strong> no puedo leer información sensible</p>
-                            </div>
-                        </div>
-                    </div>
+    <div class="container mt-4">
+        <div class="card shadow">
+            <div class="card-body">
+                <h3 class="text-center mb-4">Verificar Acceso</h3>
+                
+                <div class="mb-3">
+                    <label class="form-label">Usuario</label>
+                    <input type="text" class="form-control" placeholder="Ingrese usuario">
                 </div>
+                
+                <div class="mb-4">
+                    <label class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" placeholder="Ingrese contraseña">
+                </div>
+                
+                <button class="btn btn-primary w-100">
+                    Verificar Acceso
+                </button>
             </div>
         </div>
     </div>
