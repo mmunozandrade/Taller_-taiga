@@ -1,0 +1,47 @@
+<!DOCTYPE>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Control de Stock - Maniaterránia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="bg-light">
+    <div class="container">
+    <div class="card stock-module bg-white">
+        <h2 class="card-title text-center text-primary mb-4">Revisión de Stock</h2>
+        <div class="mb-5 border p-3 rounded bg-light">
+            <h5 class="text-center mb-3">Sistema de control stock</h5>
+            <button class="btn btn-primary w-100" disabled>
+                Procesar Control de Stock
+            </button>
+        </div>
+        
+        <h5 class="mt-4 mb-3 text-success text-center">Resultados del Sistema</h5>
+        
+        <div class="row g-3">
+            
+            <div class="col-md-6">
+                <div class="card bg-danger-subtle border-danger h-100">
+                    <div class="card-body p-3">
+                        <h6 class="card-title text-danger">Esc 1: Alerta de reposición</h6>
+                        <p class="mb-0 small fw-bold">Se detectó stock bajo o crítico en uno o más productos. El sistema emite una alerta para reponer inventario.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card bg-success-subtle border-success h-100">
+                    <div class="card-body p-3">
+                        <h6 class="card-title text-success">Esc 2: Stock normal, sin alertas</h6>
+                        <p class="mb-0 small fw-bold">Todos los productos se encuentran dentro de los niveles mínimos de seguridad. No se requiere ninguna acción de reposición.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
