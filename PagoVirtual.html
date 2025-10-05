@@ -10,35 +10,22 @@
 <body class="bg-light">
     <div class="container d-flex justify-content-center">
     <div class="payment-module"> 
-        
         <h2 class="mb-4 text-center">Selecciona tu Método de Pago</h2>
-        
         <p class="text-muted text-center mb-4">Serás redirigido a un sitio seguro para completar tu compra.</p>
-        
         <form action="/iniciar-pago" method="POST">
-            
             <div class="d-grid gap-2 mb-3">
-                <input type="hidden" name="metodo_pago" value="paypal">
-                <button type="submit" class="btn btn-paypal btn-lg">
+                <a href="paypal.html" class="btn btn-paypal btn-lg">
                     Pagar con PayPal
-                </button>
+                </a>
             </div>
-
             </form>
-        
         <form action="/iniciar-pago" method="POST">
             <div class="d-grid gap-2 mb-3">
-                <input type="hidden" name="metodo_pago" value="mercadopago">
-                <button type="submit" class="btn btn-mercadopago btn-lg">
+                <a href="mpago.html" class="btn btn-mercadopago btn-lg">
                     Pagar con Mercado Pago
-                </button>
+                </a>
             </div>
         </form>
-        
-        <div class="text-center mt-4">
-            <a href="/pago-tarjeta" class="text-decoration-none">Ver otras opciones de pago (Tarjeta de crédito/débito)</a>
-        </div>
-        
     </div>
 </div>
 </body>

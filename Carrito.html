@@ -18,19 +18,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Inicio</a>
+                        <a class="nav-link active" href="Inicio.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Menú</a>
+                        <a class="nav-link" href="Carrito.html">Menú</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contacto</a>
+                        <a class="nav-link" href="Login.html">Inicia Sesión</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Inicia Sesión</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Carrito</a>
+                        <a class="nav-link" href="CarritoPago.html">Carrito</a>
                 </ul>
             </div>
         </div>
@@ -39,7 +36,7 @@
         <!-- Título -->
         <div class="row mb-3">
         <div class="col text-center">
-            <h2>Registro de Pedido en Línea</h2>
+            <h2>Menú</h2>
         </div>
         </div>
         <div class="row">
@@ -54,44 +51,45 @@
                     <div class="border p-3 d-flex flex-column align-items-center">
                     <p>Shawarma</p>
                     <p><strong>Precio:</strong> $9.990</p>
-                    <button class="btn btn-sm btn-primary">Agregar</button>
+                    <button class="btn btn-sm btn-primary" id="btnShawarma" data-precio="9990">Agregar</button>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="border p-3 d-flex flex-column align-items-center">
                     <p>Falafel</p>
                     <p><strong>Precio:</strong> $8.990</p>
-                    <button class="btn btn-sm btn-primary">Agregar</button>
+                    <button class="btn btn-sm btn-primary" id="btnFalafel" data-precio="8990">Agregar</button>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="border p-3 d-flex flex-column align-items-center">
                     <p>Hummus</p>
                     <p><strong>Precio:</strong> $11.990</p>
-                    <button class="btn btn-sm btn-primary">Agregar</button>
+                    <button class="btn btn-sm btn-primary" id="btnHummus" data-precio="11990">Agregar</button>
                     </div>
                 </div>
                 </div>
             </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-            <div class="card-header text-center">
-                <h5>Resumen del Pedido</h5>
-            </div>
-            <div class="card-body">
-                <ul class="list-group mb-3">
-                <li class="list-group-item">Shawarma x1</li>
-                <li class="list-group-item">Hummus x2</li>
-                </ul>
-                <p><strong>Total:</strong> $33.880</p>
-                <button class="btn btn-success w-100">Confirmar Pedido</button>
-            </div>
-            </div>
+    </div>
+    <div class="col-md-4">
+    <div class="card">
+        <div class="card-header text-center">
+            <h5>Resumen del Pedido</h5>
         </div>
+        <div class="card-body">
+            <div id="listaCarrito">
+                <p class="text-muted text-center">El carrito está vacío</p>
+            </div>
+            <hr>
+            <button class="btn btn-info w-100 mb-2" id="btnVerCarritoCompleto">
+                <i class="bi bi-cart-check" ></i> Ver Carrito Completo
+            </button>
+            <button class="btn btn-success w-100" id="btnConfirmarPedido" disabled href="">Confirmar Pedido</button>
         </div>
     </div>
+</div>  
     <footer class="py-4 bg-dark text-white-50">
         <div class="container">
             <div class="row">
