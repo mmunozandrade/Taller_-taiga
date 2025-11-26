@@ -3,29 +3,180 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Datos Cifrados - Maniaterránia</title>
+    <title>Acceso Empleados - Maniaterránia</title>
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Fuente opcional -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+
+    <style>
+        body {
+            background-color: #f2f6ff;
+            font-family: "Open Sans", sans-serif;
+        }
+        .login-card {
+            max-width: 500px;
+            margin: 60px auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .login-header {
+            background: #0d6efd;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .login-card input {
+            height: 45px;
+        }
+        .login-card .btn-primary {
+            height: 45px;
+            font-size: 18px;
+        }
+        .link {
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body class="bg-light">
-    <div class="container mt-4">
-        <div class="card shadow">
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center" href="Inicio.html">
+                <h2 class="mb-0">Meniaterránia</h2>
+            </a>
+            <div class="d-flex align-items-center">
+                <a href="Inicio.html" class="nav-link text-white me-4 fw-semibold">
+                    <i class="bi bi-house-door-fill me-1"></i> Inicio
+                </a>
+
+                <a href="Carrito.html" class="nav-link text-white me-4 fw-semibold">
+                    <i class="bi bi-book-half me-1"></i> Menú
+                </a>
+                <a href="CarritoPago.html" class="nav-link text-white position-relative">
+                    <i class="bi bi-cart3" style="font-size:1.5rem;">Carrito</i>
+                    <span id="cart-count"
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        0
+                    </span>
+                </a>
+                <a href="Perfil.html" class="nav-link text-white me-3">
+                    <i class="bi bi-person-circle" style="font-size:1.5rem;">Perfil</i>
+                </a>
+                <a href="DatosCifrados.html" class="nav-link text-white me-4 fw-semibold">
+                    <i class="bi bi-book-half me-1"></i> Empleados
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- CONTENIDO -->
+    <div class="container">
+        <div class="card shadow login-card">
+            <div class="login-header">
+                <h3 class="m-0">Iniciar Sesión</h3>
+            </div>
             <div class="card-body">
-                <h3 class="text-center mb-4">Verificar Acceso</h3>
-                <div class="mb-3">
-                    <label class="form-label">Usuario</label>
-                    <input type="text" class="form-control" placeholder="Ingrese usuario">
+
+                <!-- Correo -->
+                <label class="form-label">Correo electrónico</label>
+                <input id="correo" type="email" class="form-control mb-3" placeholder="Ej: usuario@gmail.com">
+                <!-- Contraseña -->
+                <label class="form-label">Contraseña</label>
+                <input id="pass" type="password" class="form-control mb-1" placeholder="Tu contraseña">
+                <div class="text-end mb-3">
+                    <a href="#" class="link">¿Olvidaste tu contraseña?</a>
                 </div>
-                <div class="mb-4">
-                    <label class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" placeholder="Ingrese contraseña">
+                <!-- Recordarme -->
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="recordarme">
+                    <label for="recordarme" class="form-check-label">Recordarme</label>
                 </div>
-                <button class="btn btn-primary w-100">
-                    Verificar Acceso
-                </button>
+                <!-- Botón -->
+                <button  href="" id="btnIngresar" class="btn btn-primary w-100">Ingresar</button>
+                <p class="text-center mt-3">
+                    ¿No tienes una cuenta? <a href="#" class="link">Crear nueva cuenta</a>
+                </p>
             </div>
         </div>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="py-4 bg-dark text-white-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>Maniaterránia</h5>
+                    <p class="small">Auténtica comida mediterránea: hummus, falafel y shawarma.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contacto</h5>
+                    <p class="small mb-1"><i class="bi bi-telephone me-2"></i>+569 6173 9921</p>
+                    <p class="small mb-1"><i class="bi bi-envelope me-2"></i>info@mediterraneo.com</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Únete</h5>
+                    <p class="small">Suscríbete para recibir nuestras promociones y novedades.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Tu email">
+                        <button class="btn btn-primary" type="button">Suscribir</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-3" style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center small">
+                <p>&copy; 2025 Maniaterránia. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- SCRIPT LOGIN EMPLEADOS -->
+    <script>
+        // 🔒 CUENTAS PREDEFINIDAS (solo 5 empleados)
+        const empleados = [
+            { correo: "empleado1@gmail.com", pass: "1234" },
+            { correo: "empleado2@gmail.com", pass: "1234" },
+            { correo: "empleado3@gmail.com", pass: "1234" },
+            { correo: "empleado4@gmail.com", pass: "1234" },
+            { correo: "empleado5@gmail.com", pass: "1234" }
+        ];
+        const correo = document.getElementById("correo");
+        const pass = document.getElementById("pass");
+        const btn = document.getElementById("btnIngresar");
+        btn.addEventListener("click", () => {
+            const correoIngresado = correo.value.trim();
+            const passIngresado = pass.value.trim();
+            if (correoIngresado === "" || passIngresado === "") {
+                alert("Debes completar todos los campos.");
+                return;
+            }
+            const empleado = empleados.find(e =>
+                e.correo === correoIngresado && e.pass === passIngresado
+            );
+            if (empleado) {
+                alert("Acceso permitido: EMPLEADO");
+                // Cambia este HTML por el panel que quieras abrir:
+                window.location.href = "DatosCifrados.html";
+                return;
+            }
+            alert("Acceso denegado. Solo empleados pueden ingresar.");
+        });
+    </script>
 </body>
 </html>
