@@ -4,62 +4,185 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Reporte de Consumo - Maniaterránia</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body { background-color: #f8f9fa; }
+        .item-box {
+            border-radius: 10px;
+            padding: 16px;
+            background: #ffffff;
+            border: 1px solid #dee2e6;
+        }
+    </style>
 </head>
 <body class="bg-light">
+
+    <!-- NAVBAR -->
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-        <!-- Brand -->
-        <a class="navbar-brand d-flex align-items-center" href="Inicio.html">
-            <h2 class="mb-0">Meniaterránia</h2>
-        </a>
-        <div class="d-flex align-items-center">
-            <a href="Inicio.html" class="nav-link text-white me-4 fw-semibold">
-                <i class="bi bi-house-door-fill me-1"></i> Inicio
+            <a class="navbar-brand d-flex align-items-center" href="Inicio.html">
+                <h2 class="mb-0">Meniaterránia</h2>
             </a>
 
-            <a href="Carrito.html" class="nav-link text-white me-4 fw-semibold">
-                <i class="bi bi-book-half me-1"></i> Menú
-            </a>
-            <a href="CarritoPago.html" class="nav-link text-white position-relative">
-                <i class="bi bi-cart3" style="font-size:1.5rem;">Carrito</i>
-                <span id="cart-count"
-                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                0
-                </span>
-            </a>
-            <a href="Perfil.html" class="nav-link text-white me-3">
-                <i class="bi bi-person-circle" style="font-size:1.5rem;">Perfil</i>
-            </a>
-            <a href="DatosCifrados.html" class="nav-link text-white me-4 fw-semibold">
-                <i class="bi bi-book-half me-1"></i> Empleados
-            </a>
+            <div class="d-flex align-items-center">
+                <a href="Inicio.html" class="nav-link text-white me-4 fw-semibold">
+                    <i class="bi bi-house-door-fill me-1"></i> Inicio
+                </a>
+
+                <a href="Carrito.html" class="nav-link text-white me-4 fw-semibold">
+                    <i class="bi bi-book-half me-1"></i> Menú
+                </a>
+
+                <a href="CarritoPago.html" class="nav-link text-white position-relative">
+                    <i class="bi bi-cart3" style="font-size:1.5rem;">Carrito</i>
+                    <span id="cart-count"
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        0
+                    </span>
+                </a>
+
+                <a href="Perfil.html" class="nav-link text-white me-3">
+                    <i class="bi bi-person-circle" style="font-size:1.5rem;">Perfil</i>
+                </a>
+
+                <a href="DatosCifrados.html" class="nav-link text-white me-4 fw-semibold">
+                    <i class="bi bi-book-half me-1"></i> Empleados
+                </a>
             </div>
         </div>
     </nav>
 
     <div class="container mt-4">
-        <div class="card shadow">
+
+        <!-- CARD 1: FILTROS -->
+        <div class="card shadow mb-4">
             <div class="card-body">
                 <h3 class="text-center mb-4">Generar Reporte</h3>
-                
+
                 <div class="mb-3">
                     <label class="form-label">Desde:</label>
                     <input type="date" class="form-control">
                 </div>
+
                 <div class="mb-4">
                     <label class="form-label">Hasta:</label>
                     <input type="date" class="form-control">
                 </div>
+
                 <button class="btn btn-primary w-100">
                     Generar Reporte
                 </button>
             </div>
         </div>
+
+        <!-- CARD 2: TOTAL DE PEDIDOS -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <h4 class="mb-3 text-center">Estadísticas de Consumo</h4>
+
+                <div class="item-box mb-3 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="mb-1">Total de pedidos realizados</h5>
+                        <p class="text-muted mb-0">Cantidad acumulada:</p>
+                    </div>
+                    <span class="badge bg-primary fs-4 px-3" id="totalPedidos">0</span>
+                </div>
+
+                <hr>
+
+                <!-- CARD 3: CONSUMO DE PRODUCTOS -->
+                <h5 class="text-center mb-3">Consumo por Producto</h5>
+
+                <!-- HUMMUS -->
+                <div class="item-box d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <strong>Hummus</strong><br>
+                        <small class="text-muted">Consumo registrado</small>
+                    </div>
+                    <div class="text-end">
+                        <span class="badge bg-success fs-5 px-3" id="consumo-hummus">0</span><br>
+                        <button class="btn btn-sm btn-outline-primary mt-2" onclick="sumar('hummus')">
+                            +1
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FALAFEL -->
+                <div class="item-box d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <strong>Falafel</strong><br>
+                        <small class="text-muted">Consumo registrado</small>
+                    </div>
+                    <div class="text-end">
+                        <span class="badge bg-success fs-5 px-3" id="consumo-falafel">0</span><br>
+                        <button class="btn btn-sm btn-outline-primary mt-2" onclick="sumar('falafel')">
+                            +1
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SHAWARMA -->
+                <div class="item-box d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <strong>Shawarma</strong><br>
+                        <small class="text-muted">Consumo registrado</small>
+                    </div>
+                    <div class="text-end">
+                        <span class="badge bg-success fs-5 px-3" id="consumo-shawarma">0</span><br>
+                        <button class="btn btn-sm btn-outline-primary mt-2" onclick="sumar('shawarma')">
+                            +1
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="back-link">
-            <a href="MenuEmpleados.html" class="text-decoration-none">Volver al menu de empleado</a>
+            <a href="MenuEmpleados.html" class="text-decoration-none">Volver al menú de empleado</a>
         </div>
     </div>
+<script>
+    // Inicializar valores si no existen
+    if (!localStorage.getItem("totalPedidos")) {
+        localStorage.setItem("totalPedidos", "0");
+    }
+
+    if (!localStorage.getItem("consumo")) {
+        localStorage.setItem("consumo", JSON.stringify({
+            hummus: 0,
+            falafel: 0,
+            shawarma: 0
+        }));
+    }
+
+    // Obtener referencias
+    const totalPedidosSpan = document.getElementById("totalPedidos");
+    const consumoSpan = {
+        hummus: document.getElementById("consumo-hummus"),
+        falafel: document.getElementById("consumo-falafel"),
+        shawarma: document.getElementById("consumo-shawarma")
+    };
+    // Cargar datos
+    function cargarValores() {
+        const totalPedidos = localStorage.getItem("totalPedidos");
+        totalPedidosSpan.textContent = totalPedidos;
+        const consumo = JSON.parse(localStorage.getItem("consumo"));
+        consumoSpan.hummus.textContent = consumo.hummus;
+        consumoSpan.falafel.textContent = consumo.falafel;
+        consumoSpan.shawarma.textContent = consumo.shawarma;
+    }
+    // Sumar consumo
+    function sumar(producto) {
+        const consumo = JSON.parse(localStorage.getItem("consumo"));
+        consumo[producto] += 1;
+        localStorage.setItem("consumo", JSON.stringify(consumo));
+        cargarValores();
+        // Así ControlStock se actualiza automáticamente al abrirlo
+    }
+    cargarValores();
+</script>
+
 </body>
 </html>
