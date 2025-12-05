@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
@@ -11,65 +11,72 @@
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-6">
+                <!-- Título -->
                 <div class="text-center mb-4">
                     <h2 class="text-primary">BOLETA ELECTRÓNICA</h2>
                     <p class="text-muted">Maniaterránia - Comida Mediterránea</p>
                 </div>
+                <!-- Boleta -->
                 <div class="card border-dark">
                     <div class="card-body">
+                        <!-- Encabezado comercio -->
                         <div class="text-center border-bottom pb-3 mb-3">
                             <h4 class="card-title mb-1">MANIATERRÁNIA</h4>
                             <p class="mb-1 small text-muted">RUT: 76.123.456-7</p>
                             <p class="mb-0 small text-muted">Av. Mediterránea 123, Santiago</p>
                         </div>
-                        <div class="row mb-3">
+                        <!-- Datos boleta + fecha -->
+                        <div class="row mb-2">
                             <div class="col-6">
                                 <strong>Boleta N°:</strong><br>
-                                <span class="text-muted">B-001-789012</span>
+                                <span class="text-muted" id="boletaNumero">B-001-000001</span>
                             </div>
                             <div class="col-6 text-end">
                                 <strong>Fecha:</strong><br>
-                                <span class="text-muted" id="fechaActual">15/12/2024 18:30</span>
+                                <span class="text-muted" id="fechaActual">--/--/---- --:--</span>
                             </div>
                         </div>
+                        <!-- Datos del cliente -->
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <strong>Cliente:</strong>
+                                <span class="text-muted" id="clienteNombre">No informado</span><br>
+                                <strong>Dirección:</strong>
+                                <span class="text-muted" id="clienteDireccion">No informada</span><br>
+                                <strong>Método de pago:</strong>
+                                <span class="text-muted" id="clientePago">No informado</span>
+                            </div>
+                        </div>
+                        <!-- Tabla de productos -->
                         <div class="table-responsive">
-                            <table class="table table-sm table-borderless">
+                            <table class="table table-sm table-borderless mb-0">
                                 <thead>
                                     <tr class="border-bottom">
                                         <th>Producto</th>
                                         <th class="text-end">Precio</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Shawarma x2</td>
-                                        <td class="text-end">$19.980</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hummus x1</td>
-                                        <td class="text-end">$11.990</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Falafel x1</td>
-                                        <td class="text-end">$8.990</td>
-                                    </tr>
+                                <tbody id="tablaProductos">
+                                    <!-- Se rellena con JS -->
                                 </tbody>
                             </table>
                         </div>
-                        <div class="border-top pt-2">
+                        <!-- Totales -->
+                        <div class="border-top pt-2 mt-2">
                             <div class="row">
                                 <div class="col-6">SUBTOTAL:</div>
-                                <div class="col-6 text-end">$48.950</div>
+                                <div class="col-6 text-end" id="subtotalMonto">$0</div>
                             </div>
                             <div class="row">
                                 <div class="col-6">IVA (19%):</div>
-                                <div class="col-6 text-end">$9.300</div>
+                                <div class="col-6 text-end" id="ivaMonto">$0</div>
                             </div>
                             <div class="row fw-bold fs-5 border-top pt-2">
                                 <div class="col-6">TOTAL:</div>
-                                <div class="col-6 text-end">$58.250</div>
+                                <div class="col-6 text-end" id="totalMonto">$0</div>
                             </div>
                         </div>
+                        <!-- Mensaje final -->
                         <div class="text-center mt-4">
                             <p class="small text-muted mb-0">¡Gracias por su compra!</p>
                         </div>
@@ -77,11 +84,120 @@
                 </div>
             </div>
         </div>
-        <div class="text-center mb-3">
+        <!-- Botón descargar / continuar -->
+        <div class="text-center mb-3 mt-3">
             <a href="BoletaEnviada.html" class="btn btn-outline-secondary">
-            Descargar Boleta
-        </a>
+                Descargar Boleta
+            </a>
         </div>
     </div>
+
+<script>
+    // Obtener datos desde localStorage
+    const carrito   = JSON.parse(localStorage.getItem("carrito")) || {};
+    const datosPago = JSON.parse(localStorage.getItem("datosPago") || "null");
+    const tablaProductos   = document.getElementById("tablaProductos");
+    const subtotalMonto    = document.getElementById("subtotalMonto");
+    const ivaMonto         = document.getElementById("ivaMonto");
+    const totalMonto       = document.getElementById("totalMonto");
+    const fechaActualSpan  = document.getElementById("fechaActual");
+    const boletaNumeroSpan = document.getElementById("boletaNumero");
+    const clienteNombre    = document.getElementById("clienteNombre");
+    const clienteDireccion = document.getElementById("clienteDireccion");
+    const clientePago      = document.getElementById("clientePago");
+    function formatPrice(n) {
+        return '$' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    function cargarFechaYNumero() {
+        const now = new Date();
+        const dia   = String(now.getDate()).padStart(2, '0');
+        const mes   = String(now.getMonth() + 1).padStart(2, '0');
+        const anio  = now.getFullYear();
+        const hora  = String(now.getHours()).padStart(2, '0');
+        const min   = String(now.getMinutes()).padStart(2, '0');
+        fechaActualSpan.textContent = `${dia}/${mes}/${anio} ${hora}:${min}`;
+        // Número de boleta simple aleatorio (puedes cambiar la lógica si quieres)
+        const num = Math.floor(100000 + Math.random() * 900000);
+        boletaNumeroSpan.textContent = `B-001-${num}`;
+    }
+    function cargarDatosCliente() {
+        if (!datosPago) return;
+        if (datosPago.nombre)    clienteNombre.textContent    = datosPago.nombre;
+        if (datosPago.direccion) clienteDireccion.textContent = datosPago.direccion;
+        if (datosPago.metodoPago) {
+            let metodoTexto = "";
+            switch (datosPago.metodoPago) {
+                case "tarjeta":       metodoTexto = "Tarjeta de crédito / débito"; break;
+                case "efectivo":      metodoTexto = "Efectivo"; break;
+                case "transferencia": metodoTexto = "Transferencia"; break;
+                default:              metodoTexto = datosPago.metodoPago || "No informado";
+            }
+            clientePago.textContent = metodoTexto;
+        }
+    }
+    function cargarProductos() {
+        tablaProductos.innerHTML = "";
+        const nombres = Object.keys(carrito);
+        if (nombres.length === 0) {
+            const row = document.createElement("tr");
+            const cell = document.createElement("td");
+            cell.colSpan = 2;
+            cell.className = "text-center text-muted";
+            cell.textContent = "No hay productos en el carrito.";
+            row.appendChild(cell);
+            tablaProductos.appendChild(row);
+            subtotalMonto.textContent = "$0";
+            ivaMonto.textContent      = "$0";
+            totalMonto.textContent    = "$0";
+            return;
+        }
+        let subtotal = 0;
+        nombres.forEach(nombre => {
+            const item = carrito[nombre];
+            const cantidad = item.cantidad || 0;
+            const precio   = item.precio  || 0;
+            const totalLinea = cantidad * precio;
+            subtotal += totalLinea;
+            const tr = document.createElement("tr");
+            const tdProducto = document.createElement("td");
+            tdProducto.textContent = `${nombre} x${cantidad}`;
+            const tdPrecio = document.createElement("td");
+            tdPrecio.className = "text-end";
+            tdPrecio.textContent = formatPrice(totalLinea);
+            tr.appendChild(tdProducto);
+            tr.appendChild(tdPrecio);
+            tablaProductos.appendChild(tr);
+        });
+        const iva   = Math.round(subtotal * 0.19);
+        const total = subtotal + iva;
+        subtotalMonto.textContent = formatPrice(subtotal);
+        ivaMonto.textContent      = formatPrice(iva);
+        totalMonto.textContent    = formatPrice(total);
+    }
+    // Inicializar
+    cargarFechaYNumero();
+    cargarDatosCliente();
+    cargarProductos();
+    function guardarBoletaInfo() {
+        const boletaNumero = document.getElementById("boletaNumero").textContent;
+        const fechaActual  = document.getElementById("fechaActual").textContent;
+        const totalTexto   = document.getElementById("totalMonto").textContent;
+        // ID de transacción simple (ejemplo)
+        const transaccionId = "T" + Date.now();
+        const boletaInfo = {
+            numero: boletaNumero,
+            fecha: fechaActual,
+            total: totalTexto,
+            transaccionId: transaccionId
+        };
+        localStorage.setItem("boletaInfo", JSON.stringify(boletaInfo));
+    }
+    cargarFechaYNumero();
+    cargarDatosCliente();
+    cargarProductos();
+    guardarBoletaInfo();
+    
+</script>
+
 </body>
 </html>
