@@ -116,6 +116,7 @@
         const hora  = String(now.getHours()).padStart(2, '0');
         const min   = String(now.getMinutes()).padStart(2, '0');
         fechaActualSpan.textContent = `${dia}/${mes}/${anio} ${hora}:${min}`;
+
         // Número de boleta simple aleatorio (puedes cambiar la lógica si quieres)
         const num = Math.floor(100000 + Math.random() * 900000);
         boletaNumeroSpan.textContent = `B-001-${num}`;
@@ -174,14 +175,11 @@
         ivaMonto.textContent      = formatPrice(iva);
         totalMonto.textContent    = formatPrice(total);
     }
-    // Inicializar
-    cargarFechaYNumero();
-    cargarDatosCliente();
-    cargarProductos();
+    // Guarda info para BoletaEnviada.html
     function guardarBoletaInfo() {
-        const boletaNumero = document.getElementById("boletaNumero").textContent;
-        const fechaActual  = document.getElementById("fechaActual").textContent;
-        const totalTexto   = document.getElementById("totalMonto").textContent;
+        const boletaNumero = boletaNumeroSpan.textContent;
+        const fechaActual  = fechaActualSpan.textContent;
+        const totalTexto   = totalMonto.textContent;
         // ID de transacción simple (ejemplo)
         const transaccionId = "T" + Date.now();
         const boletaInfo = {
@@ -192,11 +190,28 @@
         };
         localStorage.setItem("boletaInfo", JSON.stringify(boletaInfo));
     }
+    // Guarda info para seguimiento.html
+    function guardarSeguimientoPedido() {
+        const boletaNumero = boletaNumeroSpan.textContent;
+        const fechaActual  = fechaActualSpan.textContent;
+        const totalTexto   = totalMonto.textContent;
+        const seguimientoPedido = {
+            numeroBoleta: boletaNumero,
+            fecha: fechaActual,
+            total: totalTexto,
+            estado: "Listo para retiro",   // estado inicial para el seguimiento
+            items: carrito,
+            nombre: datosPago && datosPago.nombre ? datosPago.nombre : "",
+            direccion: datosPago && datosPago.direccion ? datosPago.direccion : ""
+        };
+        localStorage.setItem("seguimientoPedido", JSON.stringify(seguimientoPedido));
+    }
+    // Inicializar todo una sola vez
     cargarFechaYNumero();
     cargarDatosCliente();
     cargarProductos();
     guardarBoletaInfo();
-    
+    guardarSeguimientoPedido();
 </script>
 
 </body>
