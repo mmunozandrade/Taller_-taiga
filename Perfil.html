@@ -21,7 +21,6 @@
             <a href="Inicio.html" class="nav-link text-white me-4 fw-semibold">
                 <i class="bi bi-house-door-fill me-1"></i> Inicio
             </a>
-
             <a href="Carrito.html" class="nav-link text-white me-4 fw-semibold">
                 <i class="bi bi-book-half me-1"></i> Menú
             </a>
@@ -42,36 +41,29 @@
         </div>
     </nav>
 
-    <!-- CONTENIDO -->
     <div class="container mt-5 mb-5">
         <h2 class="text-center mb-4">Mi Cuenta</h2>
-
         <div class="row justify-content-center">
         <div class="col-md-6">
-
-            <!-- Información del usuario -->
+                <div id="alerta-perfil" class="alert alert-info" role="alert">
+                    Cargando datos del perfil...
+                </div>
             <div class="info-box mb-4 shadow-sm">
-            <i class="bi bi-person-lines-fill fs-1 text-dark"></i>
-            <h4 class="mt-3">Bienvenido, <strong>""</strong></h4>
-            <p class="text-muted mb-1">Correo: """"""@example.com</p>
-            <p class="text-muted">Rol: Cliente</p>
-
-            <!--Nuevo botin: Seguimiento de pedido -->
-            <a href="SeguirPedido.html" class="btn btn-primary w-100 mt-3">
-                <i class="bi bi-truck me-2"></i> Seguimiento de pedido
-            </a>
+                <i class="bi bi-person-lines-fill fs-1 text-dark"></i>
+                <h4 class="mt-3">Bienvenido, <strong id="nombre-usuario">Cargando...</strong></h4>
+                <p class="text-muted mb-1">Correo: <span id="correo-usuario">Cargando...</span></p>
+                <p class="text-muted">Rol: <span id="rol-usuario">Cargando...</span></p>
+                            <a href="SeguirPedido.html" class="btn btn-primary w-100 mt-3">
+                    <i class="bi bi-truck me-2"></i> Seguimiento de pedido
+                </a>
             </div>
-
-            <!-- Autenticacion en 2 pasos -->
-            <div class="info-box mb-4 shadow-sm">
+        <div class="info-box mb-4 shadow-sm">
             <h5>Autenticacion en 2 pasos</h5>
             <a href="Autenticacion2P.html" class="btn btn-success w-100 mb-2">
                 <i class="bi bi-gift-fill me-2"></i> Verifica tu cuenta
             </a>
-
-            <!-- Promociones y notificaciones -->
-            <h5>Promociones</h5>
-            <div class="d-grid gap-2">
+                    <h5>Promociones</h5>
+        <div class="d-grid gap-2">
                 <a href="Sistemacupones.html" class="btn btn-primary">
                 <i class="bi bi-stars me-2"></i> Activa tus cupones
                 </a>
@@ -81,32 +73,11 @@
             </div>
         </div>
             <div class="info-box shadow-sm">
-            <a href="registroUsuario.html" class="btn btn-danger w-100">
-                <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
-            </a>
+            <button onclick="cerrarSesion()" class="btn btn-danger w-100">                 <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión</button>
             </div>
-
-        </div>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <!-- Footer -->
+    <br><br><br>
     <footer class="py-4 bg-dark text-white-50">
         <div class="container">
             <div class="row">
@@ -123,6 +94,10 @@
                     <h5>Contacto</h5>
                     <p class="small mb-1"><i class="bi bi-telephone me-2"></i>+569 6173 9921</p>
                     <p class="small mb-1"><i class="bi bi-envelope me-2"></i>info@mediterraneo.com</p>
+                                        <br>
+                    <a href="URL_DE_TU_SWAGGER_UI" target="_blank" class="text-decoration-none text-white-50 small fw-semibold">
+                            <i class="bi bi-file-earmark-code me-2"></i> Documentación de la API (Swagger)
+                    </a>
                 </div>
                 <div class="col-md-4 mb-3">
                     <h5>Únete</h5>
@@ -139,6 +114,63 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', cargarDatosPerfil);
+        function cargarDatosPerfil() {
+            const token = localStorage.getItem('authToken');
+            const alerta = document.getElementById('alerta-perfil');
+            if (!token) {
+                alerta.classList.remove('alert-info');
+                alerta.classList.add('alert-danger');
+                alerta.textContent = 'Error: No has iniciado sesión. Redirigiendo...';
+                
+                setTimeout(() => {
+                    window.location.href = 'Login.html'; 
+                }, 1500);
+                return;
+            }
+            const apiUrl = 'URL_BASE_DE_TU_API/api/v1/perfil'; 
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token 
+                }
+            };
+            fetch(apiUrl, options)
+                .then(response => {
+                    if (response.status === 401 || response.status === 403) {
+                        // Token inválido/expirado
+                        alerta.textContent = 'Tu sesión ha expirado. Por favor, inicia sesión de nuevo.';
+                        alerta.classList.remove('alert-info');
+                        alerta.classList.add('alert-warning');
+                        cerrarSesion();
+                        return;
+                    }
+                    if (!response.ok) {
+                        throw new Error('Error al obtener datos del perfil.'); 
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('nombre-usuario').textContent = data.nombre || 'Cliente';
+                    document.getElementById('correo-usuario').textContent = data.email || 'N/A';
+                    document.getElementById('rol-usuario').textContent = data.rol || 'Cliente';
+                    alerta.classList.add('d-none');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alerta.classList.remove('alert-info');
+                    alerta.classList.add('alert-danger');
+                    alerta.textContent = 'Error: No se pudieron cargar los datos del perfil.';
+                });
+        }
+        function cerrarSesion() {
+            localStorage.removeItem('authToken'); 
+            window.location.href = 'Login.html'; 
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
